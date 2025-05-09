@@ -1,0 +1,34 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node modules (for both client and server)
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build files
+dist/
+dist-ssr/
+
+# Local environment files
+*.local
+
+# Editor directories and files (for common code editors like VSCode, JetBrains, etc.)
+.vscode/*             # Ignore VSCode settings
+!.vscode/extensions.json  # Keep the VSCode extensions config
+.idea                 # Ignore JetBrains IDE settings
+.DS_Store             # macOS file
+*.suo                 # Visual Studio
+*.ntvs*               # Node.js tools for Visual Studio
+*.njsproj             # Node.js project files for Visual Studio
+*.sln                 # Visual Studio solution files
+*.sw?                 # Swap files (Vim, etc.)
+
+# Environment files (Do NOT track sensitive information)
+.env
