@@ -39,6 +39,11 @@ app.get('/test', async(req, res) => {
 
 });
 
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true 
+}));
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port http://localhost:${PORT}`);
 })
