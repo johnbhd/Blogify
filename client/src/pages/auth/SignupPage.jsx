@@ -7,23 +7,37 @@ import { SignUp } from '../../api/auth';
 function SignupPage({ onSwitch }) {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
+    const [message, setMessage] = useState('');
 
     const[formData, setFormData] = useState({
         email: '', 
-        password: ''
+        password: '',
+        confirmpassword: ''
     });
 
     const handleChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value});
     }
 
+    const SignUpValidation = () => {
+        if (formData.password !== formData.confirmpassword) {
+            setMessage("Passwords do not match!");
+            return false;
+        }
+        setMessage('');
+        return true;
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const isValid = SignUpValidation();
+        if (!isValid) return;
+
         try {
             const data = await SignUp(formData);
+            alert("Successful Register Account...");
             console.log('Signup success:', data);
-            alert("Successful Register Account...")
+            onSwitch();1
         } catch(error) {
             console.log(error);
         }
@@ -50,8 +64,10 @@ function SignupPage({ onSwitch }) {
                     <hr className="flex-grow border-gray-300" />
                 </div>
           
-
-                <form onSubmit={handleSubmit} className="w-full max-w-sm min-w-[200px] flex flex-col gap-3 mt-4">
+                <div className='text-red-700 text-sm'>
+                    {message}
+                </div>
+                <form onSubmit={handleSubmit} className="w-full max-w-sm min-w-[200px] flex flex-col gap-3 ">
                         <input 
                             type='email'
                             name='email'
@@ -85,8 +101,12 @@ function SignupPage({ onSwitch }) {
                             <div className="relative">
                             <input
                                 type={showConfirm ? "text" : "password"}
+                                name='confirmpassword'
+                                value={formData.confirmpassword}
                                 className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                 placeholder="Confirm Password"
+                                onChange={handleChange}
+                                required
                                 />
                             <button
                                 type="button"

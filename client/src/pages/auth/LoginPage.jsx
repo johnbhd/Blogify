@@ -5,6 +5,9 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function LoginPage( { onSwitch } ) {
   const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState('');
+
+
 
   return (
     <div className="bg-white w-[90%] h-[67%] rounded-lg opacity-100 md:w-[60%] md:opacity-90 md:h-[80%]">
@@ -24,7 +27,10 @@ function LoginPage( { onSwitch } ) {
             <hr className="flex-grow border-gray-300" />
           </div>
      
-          <div className="w-full max-w-sm min-w-[200px] flex flex-col gap-3 mt-4">
+          <div className='text-red-700 text-sm'>
+              Oops! Email or password doesn't match.
+          </div> 
+          <div className="w-full max-w-sm min-w-[200px] flex flex-col gap-3 mt-2">
             <input type='text' className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Email" />
             <div className="max-w-sm w-full">
               <div className="relative">

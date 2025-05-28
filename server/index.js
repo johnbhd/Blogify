@@ -21,24 +21,6 @@ app.get('/', (req, res) => {
   res.send('api is running...')
 })
 
-app.get('/test', async(req, res) => {
-  try {
-    const userExist = await User.findOne({email: "hello@gmail.com"});
-
-    if (userExist) {
-      return res.status(400).json({ message: "user exisited" });
-    }
-    
-    const newUser = new User({ email: "hello@gmail.com", password: "1233456"});
-    await newUser.save();
-    
-    res.json(newUser);
-  } catch (error) {
-    console.log('error:', error);
-  }
-
-});
-
 app.use(cors({
     origin: 'http://localhost:5173',
     credentials: true 
