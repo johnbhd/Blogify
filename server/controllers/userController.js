@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
-async function register(req, res) {
+export async function register(req, res) {
     try {
         const { email, password } = req.body;
 
@@ -38,7 +38,7 @@ async function register(req, res) {
         res.status(500).json({ error: "Server error" }); 
     }
 }
-async function login(req, res) {
+export async function login(req, res) {
     try {
 
         const { email, password } = req.body;
@@ -46,7 +46,7 @@ async function login(req, res) {
         const user = await User.findOne({ email });
     
         if (!user) {
-            res.status(400).json({ error: "Invalid email or password"});
+            return res.status(400).json({ error: "Invalid email or password"});
         }
     
         const isMatch = await bcrypt.compare(password, user.password);
@@ -54,12 +54,18 @@ async function login(req, res) {
         if (!isMatch) {
             return res.status(400).json({ error: "Invalid email or password" });
         }
+
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
     
-        res.status(200).json({ message: "Login successful" });
+        res.status(200).json({ message: "Login successful", token});
+
     } catch (error) {
         console.log("Error Login");
         res.status(500).json({ error: "Server error" });
     }
 }
 
-export default {register, login};

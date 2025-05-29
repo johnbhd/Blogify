@@ -37,7 +37,7 @@ function SignupPage({ onSwitch }) {
             const data = await SignUp(formData);
             alert("Successful Register Account...");
             console.log('Signup success:', data);
-            onSwitch();1
+            onSwitch();
         } catch(error) {
             console.log(error);
         }

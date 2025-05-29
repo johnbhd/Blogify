@@ -14,3 +14,16 @@ export const SignUp = async ({ email, password }) => {
         console.log(error)
     }
 }
+
+export const Login = async ({ email, password }) => {
+    try {
+        const logged = await axios.post(`${baseUrl}/api/auth/login`, {
+            email,
+            password
+        });
+
+        return logged.data;
+    } catch (error) {
+        throw error.response ? error.response : error;
+    }
+}
