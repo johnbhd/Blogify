@@ -5,27 +5,42 @@ import connectDB from './config/db.js';
 import User from './models/User.js';
 import router from './routes/auth.js';
 import bcrypt from 'bcryptjs';
+import passport from 'passport';
+import session from 'express-session';
+import './services/passport.js';
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
+const PORT = process.env.PORT || 3000;
+connectDB();
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true 
+}));
+
 app.use(express.json());
+
+app.use(session({
+  secret: process.env.COOKIE_KEY,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api/auth', router);
 
-const PORT = process.env.PORT || 3000;
-
-connectDB();
 app.get('/', (req, res) => {
   res.send('api is running...')
 })
 
-app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true 
-}));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port http://localhost:${PORT}`);
 })
+

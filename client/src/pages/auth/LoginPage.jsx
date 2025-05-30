@@ -38,6 +38,13 @@ function LoginPage( { onSwitch } ) {
     }
   }
 
+  const googleAuth = () => {
+       window.open(
+                `http://localhost:3000/api/auth/google`,
+                "_self"
+        );
+  };
+
   return (
     <div className="bg-white w-[90%] h-[67%] rounded-lg opacity-100 md:w-[60%] md:opacity-90 md:h-[80%]">
       <div className="flex justify-center items-center h-full ">
@@ -45,7 +52,10 @@ function LoginPage( { onSwitch } ) {
           <h4 className="font-bold text-base md:text-lg">Blogify</h4>
           <h1 className="text-xl md:text-2xl font-semibold">Sign in to your account</h1>
 
-          <div className="flex items-center justify-center gap-2 bg-gray-100 p-2 rounded-lg m-5 w-full hover:shadow-md cursor-pointer">
+          <div 
+            className="flex items-center justify-center gap-2 bg-gray-100 p-2 rounded-lg m-5 w-full hover:shadow-md cursor-pointer"
+            onClick={googleAuth}
+          >
             <FcGoogle className="text-xl md:text-2xl" />
             <p className="text-xs md:text-sm">Sign in with Google</p>
           </div>
