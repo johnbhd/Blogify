@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import LoginPage from "./auth/LoginPage"
-import SignupPage from "./auth/SignupPage"
+import LoginPage from "./LoginPage"
+import SignupPage from "./SignupPage"
 
 function Loader() {
   return (

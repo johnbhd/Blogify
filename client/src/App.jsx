@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AuthPage from './pages/AuthPage';
+import AuthPage from './pages/auth/AuthPage';
 import HomePage from './pages/main/HomePage';
 
 function App() { 
