@@ -14,7 +14,7 @@ function MainNav() {
           
             <div className='flex gap-7 items-center'>
                 <div className='flex gap-5'>
-                    <FontAwesomeIcon icon={faPlus} className='text-xl cursor-pointer'/>
+                    <FontAwesomeIcon icon={faPlus} className='text-xl cursor-pointer'/>Write
                     <FontAwesomeIcon icon={faBell} className='text-xl cursor-pointer'/>
                 </div>
                 <div className='bg-black p-4 rounded-full cursor-pointer'>
