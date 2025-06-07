@@ -15,7 +15,7 @@ function BlogCard() {
 function Card() {
   return (
     <div className='w-65 h-full bg-blue-200 rounded-lg cursor-pointer'>
-      <img src="/img/banner.jpg" alt="Banner Blog" className='object-cover w-full h-30 rounded-t-lg'/>
+      <img src="/img/banner.jpg" alt="Banner Blog" className='object-cover w-full h-30 rounded-t-lg'/>  
       <div className='flex gap-5 px-4 py-2'>
         <div className='bg-black p-4 h-2 rounded-full cursor-pointer'>
         </div>
