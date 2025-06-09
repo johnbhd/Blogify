@@ -23,13 +23,21 @@ export async function register(req, res) {
         
         const token = jwt.sign(
             {
-                id: newUser._id
+                id: newUser._id,
+                role: user.role
             },
             process.env.JWT_SECRET,
             {
                 expiresIn: '1h'
             }
         )
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'Lax',
+            maxAge: 60 * 60 * 1000
+        });
 
         res.status(201).json({ message: "User registered successfully", token});
 
@@ -49,17 +57,24 @@ export async function login(req, res) {
             return res.status(400).json({ error: "Invalid email or password"});
         }
     
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = bcrypt.compareSync(password, user.password);
     
         if (!isMatch) {
             return res.status(400).json({ error: "Invalid email or password" });
         }
 
         const token = jwt.sign(
-            { id: user._id },
+            { id: user._id, role: 'user' },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'Lax',
+            maxAge: 60 * 60 * 100
+        });
     
         res.status(200).json({ message: "Login successful", token});
 
@@ -69,3 +84,18 @@ export async function login(req, res) {
     }
 }
 
+export async function logout(req, res) {
+    try {
+        res.clearCookie('token', {
+             httpOnly: true,
+            secure: false,
+            sameSite: 'Lax',
+            maxAge: 60 * 60 * 100
+        });
+        
+        res.status(200).json({ message: 'Logout Succesfully'});
+
+    } catch (error) {
+        res.status(500).json({ error: 'Server error'})
+    }
+}

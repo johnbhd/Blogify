@@ -8,11 +8,14 @@ import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import session from 'express-session';
 import './services/passport.js';
+import cookieParser from 'cookie-parser';
+import authMiddleware from './middleware/authMiddleware.js'
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use(cookieParser());
 const PORT = process.env.PORT || 3000;
 connectDB();
 
@@ -33,7 +36,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+app.get('/api/protected', authMiddleware, (req, res) => {
+  res.json({ message: 'You are authorized', user: req.user});
+});
+
 app.use('/api/auth', router);
+
 
 app.get('/', (req, res) => {
   res.send('api is running...')
