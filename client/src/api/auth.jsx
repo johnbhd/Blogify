@@ -27,3 +27,13 @@ export const Login = async ({ email, password }) => {
         throw error.response ? error.response : error;
     }
 }
+
+export const Logout = async () => {
+    try {
+        const logout = await axios.post(`${baseUrl}/api/auth/logout`, {}, { withCredentials: true});
+    
+        return logout.data;
+    } catch (error) {
+        console.log(error);
+    }
+}

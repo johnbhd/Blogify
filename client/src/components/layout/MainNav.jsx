@@ -2,8 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faPlus, faCircleHalfStroke, faToggleOff, faRightFromBracket, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Logout } from '../../api/auth';
 
 function MainNav() {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const dropdown = useRef();
 
@@ -18,8 +21,18 @@ function MainNav() {
         document.addEventListener("mousedown", ProfileToggle);
         return () => document.removeEventListener("mousedown", ProfileToggle);
 
-
     }, []);
+
+    const handleLogout = async () => {
+        try {
+            await Logout();
+
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+      
   return (
     <div ref={dropdown}>
         <nav className='flex justify-between items-center py-5 px-8 md:px-10 '>
@@ -75,7 +88,7 @@ function MainNav() {
                 </div>
                 <div className='border-gray-100 border-1 w-full '></div>
                 <div className='p-5'>
-                    <div className='flex gap-5 items-center cursor-pointer'>
+                    <div className='flex gap-5 items-center cursor-pointer' onClick={handleLogout}>
                         <FontAwesomeIcon icon={faRightFromBracket} className='text-xl font-bold'/>
                         <p className='text-lg'>Logout</p>
                     </div>
