@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import LoginPage from "./LoginPage"
 import SignupPage from "./SignupPage"
 
-function Loader() {
+export function Loader() {
   return (
     <div className='flex justify-center items-center h-screen bg-[#cce4ff]'>
       <div className="flex gap-2">
@@ -26,6 +26,8 @@ function AuthPage() {
   if (isLoader) {
     return <Loader />
   }
+
+
   return (
     <div className="bg-[linear-gradient(to_right,_#cce4ff_50%,_#1f1e6a_50%)] h-screen">
         <div className="flex justify-center items-center h-screen">

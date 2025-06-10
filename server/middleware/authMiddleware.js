@@ -1,10 +1,8 @@
 import jwt from 'jsonwebtoken';
 
-async function authMiddleware(req, res, next) {
+export async function authMiddleware(req, res, next) {
     const token = req.cookies.token;
     if (!token) return res.status(401).json({ message: 'Not authenticated'});
-
-    console.log("Token: ", token);
     
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -15,5 +13,3 @@ async function authMiddleware(req, res, next) {
         return res.status(403).json({ message: 'Invalid tokens'});
     }
 }
-
-export default authMiddleware;

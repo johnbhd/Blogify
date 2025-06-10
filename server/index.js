@@ -9,12 +9,12 @@ import passport from 'passport';
 import session from 'express-session';
 import './services/passport.js';
 import cookieParser from 'cookie-parser';
-import authMiddleware from './middleware/authMiddleware.js'
+import {authMiddleware} from './middleware/authMiddleware.js'
 
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
 app.use(cookieParser());
 const PORT = process.env.PORT || 3000;
 connectDB();
@@ -43,13 +43,10 @@ app.get('/api/protected', authMiddleware, (req, res) => {
 
 app.use('/api/auth', router);
 
-
 app.get('/', (req, res) => {
   res.send('api is running...')
 })
 
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port http://localhost:${PORT}`);
 })
-

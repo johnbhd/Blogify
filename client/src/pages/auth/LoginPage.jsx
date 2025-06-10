@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Login } from '../../api/auth';
 
 function LoginPage( { onSwitch } ) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -25,9 +26,13 @@ function LoginPage( { onSwitch } ) {
     try {
       const data = await Login(formData);
       console.log(data.token);
-      alert('Login Successfully...');
       console.log(data);
-      navigate('/Home');
+      alert('Login Successfully...');
+      
+      const from = location.state?.from?.pathname || '/Home';
+      navigate(from, {replace: true});
+      window.location.reload();
+      
     } catch (error) {
       console.log(error);
         if (error.response && error.response.data && error.response.data.error) {
@@ -39,14 +44,13 @@ function LoginPage( { onSwitch } ) {
   }
 
   const googleAuth = () => {
-       window.open(
-                `http://localhost:3000/api/auth/google`,
-                "_self"
-        );
+    const from = location.state?.from?.pathname || '/Home';
+    
+    window.open(`http://localhost:3000/api/auth/google?redirect=${encodeURIComponent(from)}`, "_self");
   };
 
   return (
-    <div className="bg-white w-[90%] h-[67%] rounded-lg opacity-100 md:w-[60%] md:opacity-90 md:h-[80%]">
+    <div className="bg-white w-[90%] h-fit rounded-lg opacity-100 md:w-[60%] md:opacity-90 md:h-fit">
       <div className="flex justify-center items-center h-full ">
         <div className="flex flex-col justify-center items-center gap-2 w-full md:w-1/2 p-7">
           <h4 className="font-bold text-base md:text-lg">Blogify</h4>

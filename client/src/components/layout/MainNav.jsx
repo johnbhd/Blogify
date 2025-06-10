@@ -3,12 +3,13 @@ import { faBell, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faPlus, faCircleHalfStroke, faToggleOff, faRightFromBracket, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Logout } from '../../api/auth';
+import { useAuth } from '../../context/authContext';
 
 function MainNav() {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const dropdown = useRef();
+    const {logout} = useAuth();
 
     const toggleDropDown = () => setIsOpen(prev => !prev);
 
@@ -25,8 +26,7 @@ function MainNav() {
 
     const handleLogout = async () => {
         try {
-            await Logout();
-
+            await logout();
             navigate('/');
         } catch (error) {
             console.log(error);
@@ -48,7 +48,7 @@ function MainNav() {
             <div className='flex gap-7 items-center'>
                 <div className='flex gap-7'>
                     <div className='md:hidden'>
-                        <FontAwesomeIcon icon={faSearch} className='text-lg'/>
+                        <FontAwesomeIcon icon={faSearch} className='text-lg cursor-pointer'/>
                     </div>
                     <FontAwesomeIcon icon={faPlus} className='text-xl cursor-pointer'/>
                     <p className='hidden md:inline'>Write</p>    

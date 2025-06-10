@@ -24,7 +24,7 @@ export async function register(req, res) {
         const token = jwt.sign(
             {
                 id: newUser._id,
-                role: user.role
+                role: newUser.role
             },
             process.env.JWT_SECRET,
             {
@@ -87,7 +87,7 @@ export async function login(req, res) {
 export async function logout(req, res) {
     try {
         res.clearCookie('token', {
-             httpOnly: true,
+            httpOnly: true,
             secure: false,
             sameSite: 'Lax',
             maxAge: 60 * 60 * 100

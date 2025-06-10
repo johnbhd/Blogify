@@ -10,10 +10,10 @@ function HomePage() {
         <MainNav />
       </header>
       <main className='flex flex-1 '>
-          <div className='w-1/6 p-5 overflow-y-auto bg-[#edeff2] h-screen'>
+          <div className='w-1/6 p-5 overflow-y-auto bg-[#edeff2] h-screen hidden md:block'>
             <SideBlog />
           </div>
-          <div className='w-5/6 p-5 h-screen overflow-y-auto'>
+          <div className='md:w-5/6 p-5 h-screen overflow-y-auto'>
             <BlogCard />
           </div> 
       </main>

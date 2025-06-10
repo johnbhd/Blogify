@@ -5,7 +5,7 @@
         {   
             googleId: {
                 type: String,
-                required: true,
+                required: false,
                 unique: true
             },
             email: { 
