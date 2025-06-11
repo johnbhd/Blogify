@@ -2,6 +2,7 @@
   import AuthPage from './pages/auth/AuthPage';
   import HomePage from './pages/main/HomePage';
   import ViewPost from './pages/main/ViewPost';
+  import CreatePost from './pages/main/CreatePost';
   import RoutesProtected from './components/RoutesProtected';
   import RedirectIfAuthenticated from './components/RedirectIfAuthenticated';
 
@@ -32,6 +33,14 @@
                     <ViewPost />
                   </RoutesProtected>
                 }/>
+              <Route 
+                path="/Blog/Create"
+                element= {
+                  <RoutesProtected>
+                    <CreatePost />
+                  </RoutesProtected>
+                }/>
+
             <Route path="*" element={<Navigate to='/' replace />} />
             </Routes>
         </BrowserRouter>

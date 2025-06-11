@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faPlus, faCircleHalfStroke, faToggleOff, faRightFromBracket, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 
 function MainNav() {
@@ -36,7 +36,7 @@ function MainNav() {
   return (
     <div ref={dropdown}>
         <nav className='flex justify-between items-center py-5 px-8 md:px-10 '>
-            <h2 className='text-2xl font-bold'>Blogify</h2>
+            <h2 className='text-2xl font-bold'><Link to='/Home'>Blogify</Link></h2>
        
             <form className='border-black border-1 px-4 py-1 w-1/2 rounded-full hidden md:flex'>   
                 <span>
@@ -46,17 +46,18 @@ function MainNav() {
             </form>
           
             <div className='flex gap-7 items-center'>
-                <div className='flex gap-7'>
-                    <div className='md:hidden'>
-                        <FontAwesomeIcon icon={faSearch} className='text-lg cursor-pointer'/>
+                <Link to='/Blog/Create'>
+                    <div className='flex gap-7 md:gap-3'>
+                        <div className='md:hidden'>
+                            <FontAwesomeIcon icon={faSearch} className='text-lg cursor-pointer'/>
+                        </div>
+                        <FontAwesomeIcon icon={faPlus} className='text-xl cursor-pointer'/>
+                        <p className='hidden md:inline'>Write</p>   
                     </div>
-                    <FontAwesomeIcon icon={faPlus} className='text-xl cursor-pointer'/>
-                    <p className='hidden md:inline'>Write</p>    
-                </div>
+                </Link>
                 <div className='hidden md:inline'>
                     <FontAwesomeIcon icon={faBell} className='hidden md:inline text-xl cursor-pointer' />
                 </div>
-                
 
                 <button onClick={toggleDropDown}>
                     <img src="/img/user.jpg" alt="" className='w-10 rounded-full cursor-pointer'/>

@@ -5,7 +5,7 @@ import SideBlog from '../../components/blog/SideBlog'
 function HomePage() {
 
   return (
-    <div className='w-full min-h-screen bg-[#fcfcfc] h-screen overflow-hidden'>
+    <div className='w-full bg-[#fcfcfc] h-screen overflow-hidden'>
       <header className='bg-white'>
         <MainNav />
       </header>

@@ -53,15 +53,15 @@ function LoginPage( { onSwitch } ) {
     <div className="bg-white w-[90%] h-fit rounded-lg opacity-100 md:w-[60%] md:opacity-90 md:h-fit">
       <div className="flex justify-center items-center h-full ">
         <div className="flex flex-col justify-center items-center gap-2 w-full md:w-1/2 p-7">
-          <h4 className="font-bold text-base md:text-lg">Blogify</h4>
-          <h1 className="text-xl md:text-2xl font-semibold">Sign in to your account</h1>
+          <h4 className="text-base md:text-xl">Blogify</h4>
+          <h1 className="text-xl md:text-2xl font-bold">Sign in to your account</h1>
 
           <div 
             className="flex items-center justify-center gap-2 bg-gray-100 p-2 rounded-lg m-5 w-full hover:shadow-md cursor-pointer"
             onClick={googleAuth}
           >
             <FcGoogle className="text-xl md:text-2xl" />
-            <p className="text-xs md:text-sm">Sign in with Google</p>
+            <p className="text-xs md:text-lg">Sign in with Google</p>
           </div>
 
           <div className="flex items-center gap-4 w-full">

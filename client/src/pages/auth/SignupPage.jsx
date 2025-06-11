@@ -51,13 +51,13 @@ function SignupPage({ onSwitch }) {
     };
 
     return (
-        <div className="bg-white w-[90%] h-[75%] rounded-lg opacity-100 md:w-[60%] md:opacity-90 md:h-[80%]">
+        <div className="bg-white w-[90%] h-fit rounded-lg opacity-100 md:w-[60%] md:opacity-90 ">
             <div className="flex justify-center items-center h-full ">
             <div className="hidden md:flex w-1/2 justify-center">
                 <img src="/bgAuth.png" alt="Blogify" className="w-full max-w-[450px]" />
             </div>
             <div className="flex flex-col justify-center items-center gap-2 w-full md:w-1/2 p-7">
-                <h4 className="font-bold text-base md:text-lg">Blogify</h4>
+                <h4 className=" text-base md:text-xl">Blogify</h4>
                 <h1 className="text-xl text-center md:text-2xl font-semibold">Create an account to get started</h1>
 
                 <div 
@@ -65,7 +65,7 @@ function SignupPage({ onSwitch }) {
                     onClick={googleAuth}
                 >
                 <FcGoogle className="text-xl md:text-2xl" />
-                <p className="text-xs md:text-sm">Sign up with Google</p>
+                <p className="text-xs md:text-lg">Sign up with Google</p>
                 </div>
 
                 <div className="flex items-center gap-4 w-full">
