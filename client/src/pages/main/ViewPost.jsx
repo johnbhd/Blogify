@@ -17,7 +17,7 @@ function ViewPost() {
         <MainNav />
       </header>
       <main className="flex justify-center items-center pt-24">
-        <div className="flex flex-col gap-5 w-full md:w-1/2 bg-amber-50 p-5 ">
+        <div className="flex flex-col gap-5 w-full md:w-1/2 bg-gray-50 p-5 ">
           <PostHeader title = {mockPostData.title} author={mockPostData.author} followers={mockPostData.followers} date={mockPostData.date} user={mockPostData.user}/>
           <PostContent title ={mockPostData.title} img={mockPostData.img}/>
         </div>
